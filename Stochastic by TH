@@ -1,0 +1,15 @@
+//@version=4
+// Stochastic plus a 50 line
+// Author: T0pp3rH4rl3y
+study(title="Stochastic by TH", shorttitle="Stoch by TH", format=format.price, precision=2, resolution="")
+periodK = input(14, title="K", minval=1)
+periodD = input(3, title="D", minval=1)
+smoothK = input(3, title="Smooth", minval=1)
+k = sma(stoch(close, high, low, periodK), smoothK)
+d = sma(k, periodD)
+plot(k, title="%K", color=#0094FF)
+plot(d, title="%D", color=#FF6A00)
+h0 = hline(80, "Upper Band", color=#606060)
+h1 = hline(20, "Lower Band", color=#606060)
+h3 = hline(50, "Middle Band", color=color.gray, linestyle=hline.style_solid)
+fill(h0, h1, color=#9915FF, transp=80, title="Background")
